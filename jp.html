@@ -956,6 +956,37 @@ document.querySelectorAll('.day-section').forEach(section => {
     observer.observe(section);
 });
 </script>
+<script>
+// 列印前優化
+window.addEventListener('beforeprint', function() {
+    // 隱藏不需要的元素
+    document.querySelectorAll('.print-button').forEach(el => {
+        el.style.display = 'none';
+    });
+    
+    // 縮小容器
+    const container = document.querySelector('.container');
+    if (container) {
+        container.style.padding = '10px';
+        container.style.boxShadow = 'none';
+    }
+    
+    // 縮小所有區塊
+    document.querySelectorAll('.day-section').forEach(section => {
+        section.style.padding = '10px';
+        section.style.marginBottom = '10px';
+    });
+    
+    // 縮小表格字體
+    document.querySelectorAll('table').forEach(table => {
+        table.style.fontSize = '0.75em';
+    });
+});
 
+// 列印後還原
+window.addEventListener('afterprint', function() {
+    location.reload(); // 重新載入頁面還原樣式
+});
+</script>
 </body>
 </html>
