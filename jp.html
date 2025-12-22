@@ -33,7 +33,6 @@ body {
     overflow: hidden;
 }
 
-/* 装饰性背景 */
 .container::before {
     content: '🗼';
     position: absolute;
@@ -61,7 +60,6 @@ body {
     }
 }
 
-/* 标题区域 */
 .header {
     text-align: center;
     margin-bottom: 50px;
@@ -94,7 +92,6 @@ h1 {
     margin-top: 10px;
 }
 
-/* 日期卡片 */
 .day-section {
     background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
     border-radius: 20px;
@@ -129,7 +126,6 @@ h1 {
     border-color: #667eea;
 }
 
-/* 日期标题 */
 h2 {
     color: white;
     font-size: 1.9em;
@@ -154,7 +150,6 @@ h2::before {
     font-size: 1.2em;
 }
 
-/* 子标题 */
 h3 {
     color: #2d3748;
     font-size: 1.4em;
@@ -166,7 +161,6 @@ h3 {
     display: inline-block;
 }
 
-/* 表格样式 */
 .table-wrapper {
     overflow-x: auto;
     border-radius: 12px;
@@ -224,14 +218,12 @@ tbody tr:nth-child(even) {
     background-color: #f8fafc;
 }
 
-/* 时间列特殊样式 */
 td:first-child {
     font-weight: 600;
     color: #667eea;
     white-space: nowrap;
 }
 
-/* 特殊区域样式 */
 .accommodation-section {
     background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 30%, #ffffff 100%);
     border: 2px solid #81e6d9;
@@ -250,7 +242,6 @@ td:first-child {
     background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
 }
 
-/* 重要提醒区域 */
 .important-notes {
     background: linear-gradient(135deg, #fffaf0 0%, #feebc8 50%, #ffffff 100%);
     border: 3px dashed #ed8936;
@@ -284,7 +275,6 @@ td:first-child {
     font-size: 1.3em;
 }
 
-/* 打印按钮 */
 .print-button {
     position: fixed;
     bottom: 30px;
@@ -315,17 +305,6 @@ td:first-child {
     font-size: 1.2em;
 }
 
-/* 响应式设计 */
-@media (max-width: 1024px) {
-    .container {
-        padding: 35px;
-    }
-    
-    h1 {
-        font-size: 2.3em;
-    }
-}
-
 @media (max-width: 768px) {
     body {
         padding: 15px 10px;
@@ -336,31 +315,16 @@ td:first-child {
         border-radius: 15px;
     }
     
-    .container::before {
-        font-size: 250px;
-    }
-    
     h1 {
         font-size: 1.9em;
-        letter-spacing: 1px;
-    }
-    
-    .subtitle {
-        font-size: 1em;
     }
     
     h2 {
         font-size: 1.4em;
-        padding: 14px 18px;
-    }
-    
-    h3 {
-        font-size: 1.2em;
     }
     
     .day-section {
         padding: 20px;
-        margin-bottom: 25px;
     }
     
     table {
@@ -370,31 +334,8 @@ td:first-child {
     th, td {
         padding: 12px 10px;
     }
-    
-    .print-button {
-        bottom: 20px;
-        right: 20px;
-        padding: 12px 20px;
-        font-size: 1em;
-    }
 }
 
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.6em;
-    }
-    
-    h2 {
-        font-size: 1.2em;
-    }
-    
-    th, td {
-        padding: 10px 8px;
-        font-size: 0.95em;
-    }
-}
-
-/* 打印样式 */
 @media print {
     body {
         background: white;
@@ -404,53 +345,15 @@ td:first-child {
     .container {
         box-shadow: none;
         padding: 20px;
-        max-width: 100%;
-    }
-    
-    .container::before {
-        display: none;
-    }
-    
-    .day-section {
-        page-break-inside: avoid;
-        box-shadow: none;
-        border: 1px solid #e2e8f0;
-    }
-    
-    .day-section:hover {
-        transform: none;
     }
     
     .print-button {
         display: none;
     }
     
-    h2 {
-        color: #2d3561;
-        background: #edf2f7 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+    .day-section {
+        page-break-inside: avoid;
     }
-}
-
-/* 滚动条美化 */
-::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #5568d3 0%, #63408d 100%);
 }
 </style>
 </head>
@@ -462,50 +365,526 @@ td:first-child {
 <p class="subtitle">2025.12.26 - 2026.01.01 | 夢幻東京冬季之旅 ❄️</p>
 </div>
 
-<!-- 在這裡加入您的行程內容 -->
-<!-- 例如 Day 1, Day 2 等等的 div.day-section -->
+<!-- Day 1 -->
+<div class="day-section">
+<h2>Day 1 - 2025.12.26 (四) 抵達東京 🛬</h2>
+
+<h3>🕐 行程安排</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>活動</th>
+<th>地點/說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>07:30</td>
+<td>集合</td>
+<td>桃園國際機場第二航廈</td>
+</tr>
+<tr>
+<td>10:30</td>
+<td>起飛</td>
+<td>前往東京成田機場</td>
+</tr>
+<tr>
+<td>15:00</td>
+<td>抵達</td>
+<td>成田機場入境、領取行李</td>
+</tr>
+<tr>
+<td>16:30</td>
+<td>前往飯店</td>
+<td>搭乘利木津巴士或 Skyliner</td>
+</tr>
+<tr>
+<td>18:00</td>
+<td>Check-in</td>
+<td>飯店辦理入住手續</td>
+</tr>
+<tr>
+<td>19:00</td>
+<td>晚餐</td>
+<td>飯店附近居酒屋或拉麵店</td>
+</tr>
+<tr>
+<td>21:00</td>
+<td>自由活動</td>
+<td>便利商店採買、附近散步</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>🏨 住宿資訊</h3>
+<p><strong>飯店名稱：</strong>東京新宿格蘭貝爾飯店 / 類似等級</p>
+<p><strong>地址：</strong>東京都新宿區歌舞伎町2-14-5</p>
+<p><strong>特色：</strong>近新宿站、交通便利、周邊生活機能完善</p>
+</div>
+
+<!-- Day 2 -->
+<div class="day-section">
+<h2>Day 2 - 2025.12.27 (五) 淺草・晴空塔 🏯</h2>
+
+<h3>🕐 行程安排</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>活動</th>
+<th>地點/說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>08:00</td>
+<td>早餐</td>
+<td>飯店早餐或附近咖啡廳</td>
+</tr>
+<tr>
+<td>09:30</td>
+<td>淺草寺</td>
+<td>雷門、仲見世通商店街、參拜</td>
+</tr>
+<tr>
+<td>11:30</td>
+<td>午餐</td>
+<td>淺草美食街（天婦羅、鰻魚飯）</td>
+</tr>
+<tr>
+<td>13:00</td>
+<td>晴空塔</td>
+<td>登塔欣賞東京全景（350m 或 450m）</td>
+</tr>
+<tr>
+<td>15:30</td>
+<td>購物</td>
+<td>晴空塔商場 Solamachi</td>
+</tr>
+<tr>
+<td>18:00</td>
+<td>晚餐</td>
+<td>墨田區美食或回新宿用餐</td>
+</tr>
+<tr>
+<td>20:00</td>
+<td>夜景</td>
+<td>晴空塔夜間點燈（可選）</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>📝 重點提醒</h3>
+<ul>
+<li>✅ 建議購買晴空塔快速通關票</li>
+<li>✅ 淺草寺周邊適合穿和服體驗</li>
+<li>✅ 仲見世通有許多特色伴手禮</li>
+</ul>
+</div>
+
+<!-- Day 3 -->
+<div class="day-section">
+<h2>Day 3 - 2025.12.28 (六) 築地・台場 🎡</h2>
+
+<h3>🕐 行程安排</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>活動</th>
+<th>地點/說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>07:00</td>
+<td>早餐</td>
+<td>築地場外市場美食</td>
+</tr>
+<tr>
+<td>09:00</td>
+<td>築地市場</td>
+<td>海鮮丼、玉子燒、新鮮水果</td>
+</tr>
+<tr>
+<td>11:00</td>
+<td>皇居外苑</td>
+<td>二重橋、東御苑散步</td>
+</tr>
+<tr>
+<td>13:00</td>
+<td>午餐</td>
+<td>銀座美食街</td>
+</tr>
+<tr>
+<td>14:30</td>
+<td>台場</td>
+<td>搭乘百合海鷗號前往</td>
+</tr>
+<tr>
+<td>15:00</td>
+<td>台場景點</td>
+<td>鋼彈、自由女神像、購物中心</td>
+</tr>
+<tr>
+<td>18:00</td>
+<td>晚餐</td>
+<td>台場美食廣場</td>
+</tr>
+<tr>
+<td>19:30</td>
+<td>夜景</td>
+<td>彩虹大橋夜景、摩天輪</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- Day 4 -->
+<div class="day-section">
+<h2>Day 4 - 2025.12.29 (日) 迪士尼樂園 🏰</h2>
+
+<h3>🕐 行程安排</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>活動</th>
+<th>地點/說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>07:00</td>
+<td>出發</td>
+<td>前往東京迪士尼樂園</td>
+</tr>
+<tr>
+<td>08:00</td>
+<td>入園</td>
+<td>建議提早排隊入場</td>
+</tr>
+<tr>
+<td>08:30-20:00</td>
+<td>全日遊玩</td>
+<td>遊樂設施、表演、遊行</td>
+</tr>
+<tr>
+<td>12:00</td>
+<td>午餐</td>
+<td>園區內餐廳</td>
+</tr>
+<tr>
+<td>18:00</td>
+<td>晚餐</td>
+<td>園區內或 Ikspiari 購物中心</td>
+</tr>
+<tr>
+<td>20:30</td>
+<td>煙火秀</td>
+<td>城堡前觀賞夜間煙火</td>
+</tr>
+<tr>
+<td>21:30</td>
+<td>返回飯店</td>
+<td>搭乘電車回新宿</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>🎟️ 必玩設施</h3>
+<ul>
+<li>🎢 太空山（Space Mountain）</li>
+<li>🏔️ 飛濺山（Splash Mountain）</li>
+<li>👻 幽靈公館（Haunted Mansion）</li>
+<li>🎠 小小世界（It's a Small World）</li>
+<li>🎪 遊行表演（下午＆晚上）</li>
+</ul>
+</div>
+
+<!-- Day 5 -->
+<div class="day-section">
+<h2>Day 5 - 2025.12.30 (一) 原宿・澀谷 🛍️</h2>
+
+<h3>🕐 行程安排</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>活動</th>
+<th>地點/說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>09:00</td>
+<td>明治神宮</td>
+<td>參拜、御守、繪馬</td>
+</tr>
+<tr>
+<td>10:30</td>
+<td>竹下通</td>
+<td>原宿潮流文化、可麗餅</td>
+</tr>
+<tr>
+<td>12:00</td>
+<td>午餐</td>
+<td>表參道美食</td>
+</tr>
+<tr>
+<td>13:30</td>
+<td>表參道</td>
+<td>精品購物、建築巡禮</td>
+</tr>
+<tr>
+<td>15:30</td>
+<td>澀谷</td>
+<td>忠犬八公像、澀谷十字路口</td>
+</tr>
+<tr>
+<td>17:00</td>
+<td>購物</td>
+<td>澀谷 109、唐吉訶德</td>
+</tr>
+<tr>
+<td>19:00</td>
+<td>晚餐</td>
+<td>澀谷美食街（燒肉、壽司）</td>
+</tr>
+<tr>
+<td>21:00</td>
+<td>夜景</td>
+<td>澀谷 Sky 展望台（可選）</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- Day 6 -->
+<div class="day-section">
+<h2>Day 6 - 2025.12.31 (二) 跨年準備 🎆</h2>
+
+<h3>🕐 行程安排</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>活動</th>
+<th>地點/說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>09:00</td>
+<td>自由活動</td>
+<td>補眠或附近散步</td>
+</tr>
+<tr>
+<td>11:00</td>
+<td>購物</td>
+<td>新宿、池袋最後採買</td>
+</tr>
+<tr>
+<td>13:00</td>
+<td>午餐</td>
+<td>新宿美食街</td>
+</tr>
+<tr>
+<td>15:00</td>
+<td>回飯店休息</td>
+<td>準備跨年活動</td>
+</tr>
+<tr>
+<td>18:00</td>
+<td>晚餐</td>
+<td>跨年特別餐（燒肉、火鍋）</td>
+</tr>
+<tr>
+<td>22:00</td>
+<td>前往跨年地點</td>
+<td>澀谷、明治神宮或晴空塔</td>
+</tr>
+<tr>
+<td>23:45</td>
+<td>跨年倒數</td>
+<td>迎接 2026 年！🎊</td>
+</tr>
+<tr>
+<td>00:30</td>
+<td>返回飯店</td>
+<td>注意末班車時間</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>🎆 跨年地點推薦</h3>
+<ul>
+<li>🗼 東京晴空塔（需預約）</li>
+<li>⛩️ 明治神宮（初詣參拜）</li>
+<li>🌃 澀谷十字路口（人潮眾多）</li>
+<li>🎡 台場摩天輪（浪漫夜景）</li>
+</ul>
+</div>
+
+<!-- Day 7 -->
+<div class="day-section">
+<h2>Day 7 - 2026.01.01 (三) 返台 ✈️</h2>
+
+<h3>🕐 行程安排</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>活動</th>
+<th>地點/說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>08:00</td>
+<td>早餐</td>
+<td>飯店或便利商店</td>
+</tr>
+<tr>
+<td>09:00</td>
+<td>Check-out</td>
+<td>飯店退房、寄放行李</td>
+</tr>
+<tr>
+<td>10:00</td>
+<td>最後採買</td>
+<td>藥妝店、伴手禮</td>
+</tr>
+<tr>
+<td>12:00</td>
+<td>午餐</td>
+<td>機場或新宿</td>
+</tr>
+<tr>
+<td>13:30</td>
+<td>前往機場</td>
+<td>搭乘利木津巴士或電車</td>
+</tr>
+<tr>
+<td>15:30</td>
+<td>辦理登機</td>
+<td>成田機場 Check-in</td>
+</tr>
+<tr>
+<td>17:00</td>
+<td>登機</td>
+<td>準備返台</td>
+</tr>
+<tr>
+<td>20:00</td>
+<td>抵達台灣</td>
+<td>桃園機場，溫暖的家 🏠</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- 住宿資訊 -->
+<div class="day-section accommodation-section">
+<h2>🏨 住宿資訊總覽</h2>
+
+<h3>📍 主要住宿飯店</h3>
+<p><strong>飯店：</strong>東京新宿格蘭貝爾飯店 / APA Hotel 新宿歌舞伎町</p>
+<p><strong>地址：</strong>東京都新宿區歌舞伎町</p>
+<p><strong>入住：</strong>2025.12.26（第1晚）</p>
+<p><strong>退房：</strong>2026.01.01（共6晚）</p>
+
+<h3>✨ 飯店特色</h3>
+<ul>
+<li>🚇 距離新宿站步行 5-8 分鐘</li>
+<li>🏪 周邊便利商店、餐廳林立</li>
+<li>🛏️ 乾淨舒適、設備完善</li>
+<li>📶 免費 Wi-Fi、中文服務</li>
+</ul>
+</div>
+
+<!-- 美食推薦 -->
+<div class="day-section restaurant-section">
+<h2>🍜 必吃美食推薦</h2>
+
+<h3>🥢 拉麵</h3>
+<ul>
+<li>一蘭拉麵（新宿、澀谷多家分店）</li>
+<li>一風堂拉麵</li>
+<li>蔦拉麵（米其林一星）</li>
+</ul>
+
+<h3>🍣 壽司・海鮮</h3>
+<ul>
+<li>築地場外市場海鮮丼</li>
+<li>壽司郎（迴轉壽司）</li>
+<li>磯丸水產（24小時海鮮居酒屋）</li>
+</ul>
+
+<h3>🥩 燒肉・和牛</h3>
+<ul>
+<li>敘敘苑燒肉</li>
+<li>牛角燒肉</li>
+<li>一頭牛燒肉</li>
+</ul>
+
+<h3>🍰 甜點・咖啡</h3>
+<ul>
+<li>Harbs 水果千層蛋糕</li>
+<li>Pablo 起司塔</li>
+<li>% Arabica 咖啡</li>
+</ul>
+</div>
+
+<!-- 重要提醒 -->
+<div class="important-notes">
+<h2>⚠️ 重要提醒事項</h2>
+
+<ul>
+<li>📱 建議購買日本上網 SIM 卡或 Wi-Fi 分享器</li>
+<li>💳 信用卡、現金（建議準備 5-8 萬日圓）</li>
+<li>🎫 提前預訂迪士尼門票、晴空塔門票</li>
+<li>🚇 購買 Suica 或 Pasmo 交通卡</li>
+<li>🧥 冬季保暖衣物（東京 12-1 月約 5-10°C）</li>
+<li>🔌 日本電壓 100V，需攜帶轉接頭</li>
+<li>📸 相機、行動電源、充電器</li>
+<li>💊 常備藥品、口罩</li>
+<li>📄 護照、機票、訂房確認單</li>
+<li>🎒 行李箱建議留空間裝戰利品</li>
+</ul>
+
+<h3>📞 緊急聯絡電話</h3>
+<ul>
+<li>🚨 日本報警：110</li>
+<li>🚑 日本救護車：119</li>
+<li>🏢 台北駐日經濟文化代表處：03-3280-7811</li>
+</ul>
+</div>
+
+<div style="text-align: center; margin-top: 50px; padding: 30px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px;">
+<h2 style="color: #2d3561; margin-bottom: 15px;">🎌 祝您旅途愉快！</h2>
+<p style="font-size: 1.2em; color: #4a5568;">Have a wonderful trip to Tokyo! 🗼✨</p>
+<p style="margin-top: 10px; color: #718096;">行程製作日期：2025.12.22</p>
+</div>
 
 </div>
 
 <button class="print-button" onclick="window.print()">列印行程表</button>
-
-<script>
-// 平滑滚动效果
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// 添加滚动动画
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.day-section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'all 0.6s ease-out';
-    observer.observe(section);
-});
-</script>
 
 </body>
 </html>
