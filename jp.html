@@ -1,993 +1,294 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>東京 7天6夜精緻行程表 🎌</title>
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-attachment: fixed;
-    color: #333;
-    line-height: 1.8;
-    padding: 30px 15px;
-    min-height: 100vh;
-}
-
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 25px;
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
-    padding: 50px;
-    animation: fadeInUp 0.8s ease-out;
-    position: relative;
-    overflow: hidden;
-}
-
-/* 装饰性背景 */
-.container::before {
-    content: '🗼';
-    position: absolute;
-    font-size: 400px;
-    opacity: 0.03;
-    right: -50px;
-    top: 50px;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.container > * {
-    position: relative;
-    z-index: 1;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* 标题区域 */
-.header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 5px solid transparent;
-    border-image: linear-gradient(90deg, #667eea, #764ba2, #667eea) 1;
-}
-
-h1 {
-    color: #2d3561;
-    font-size: 3em;
-    margin-bottom: 15px;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
-    letter-spacing: 2px;
-    animation: titlePulse 2s ease-in-out infinite;
-}
-
-@keyframes titlePulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.02);
-    }
-}
-
-.subtitle {
-    color: #718096;
-    font-size: 1.2em;
-    margin-top: 10px;
-}
-
-/* 日期卡片 */
-.day-section {
-    background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
-    border-radius: 20px;
-    padding: 35px;
-    margin-bottom: 35px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    border: 2px solid transparent;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-}
-
-.day-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    transform: scaleX(0);
-    transition: transform 0.4s ease;
-}
-
-.day-section:hover::before {
-    transform: scaleX(1);
-}
-
-.day-section:hover {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.25);
-    border-color: #667eea;
-}
-
-/* 日期标题 */
-h2 {
-    color: white;
-    font-size: 1.9em;
-    margin-bottom: 25px;
-    padding: 18px 25px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: all 0.3s ease;
-}
-
-h2:hover {
-    transform: translateX(5px);
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
-}
-
-h2::before {
-    content: '📍';
-    font-size: 1.2em;
-}
-
-/* 子标题 */
-h3 {
-    color: #2d3748;
-    font-size: 1.4em;
-    margin: 25px 0 18px 0;
-    padding: 12px 20px;
-    background: linear-gradient(90deg, #edf2f7 0%, transparent 100%);
-    border-left: 5px solid #667eea;
-    border-radius: 5px;
-    display: inline-block;
-}
-
-/* 表格样式 */
-.table-wrapper {
-    overflow-x: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    margin: 20px 0;
-}
-
-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-thead {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-th {
-    color: white;
-    font-weight: 600;
-    padding: 18px 20px;
-    text-align: left;
-    font-size: 1.05em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: none;
-}
-
-td {
-    padding: 16px 20px;
-    text-align: left;
-    border-bottom: 1px solid #e2e8f0;
-    transition: all 0.2s ease;
-    font-size: 1.02em;
-}
-
-tbody tr {
-    transition: all 0.3s ease;
-}
-
-tbody tr:hover {
-    background: linear-gradient(90deg, #f7fafc 0%, #edf2f7 100%);
-    transform: scale(1.01);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-tbody tr:last-child td {
-    border-bottom: none;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f8fafc;
-}
-
-/* 时间列特殊样式 */
-td:first-child {
-    font-weight: 600;
-    color: #667eea;
-    white-space: nowrap;
-}
-
-/* 特殊区域样式 */
-.accommodation-section {
-    background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 30%, #ffffff 100%);
-    border: 2px solid #81e6d9;
-}
-
-.accommodation-section h2 {
-    background: linear-gradient(135deg, #38b2ac 0%, #2c7a7b 100%);
-}
-
-.restaurant-section {
-    background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 30%, #ffffff 100%);
-    border: 2px solid #fc8181;
-}
-
-.restaurant-section h2 {
-    background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
-}
-
-/* 重要提醒区域 */
-.important-notes {
-    background: linear-gradient(135deg, #fffaf0 0%, #feebc8 50%, #ffffff 100%);
-    border: 3px dashed #ed8936;
-    border-radius: 20px;
-    padding: 30px;
-    margin: 40px 0;
-    box-shadow: 0 8px 20px rgba(237, 137, 54, 0.15);
-}
-
-.important-notes h2 {
-    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
-}
-
-.important-notes ul {
-    list-style: none;
-    padding: 0;
-}
-
-.important-notes li {
-    padding: 12px 0;
-    padding-left: 35px;
-    position: relative;
-    font-size: 1.1em;
-    color: #2d3748;
-}
-
-.important-notes li::before {
-    content: '⚠️';
-    position: absolute;
-    left: 0;
-    font-size: 1.3em;
-}
-
-/* 打印按钮 */
-.print-button {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-size: 1.1em;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-    transition: all 0.3s ease;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.print-button:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
-}
-
-.print-button::before {
-    content: '🖨️';
-    font-size: 1.2em;
-}
-
-/* 响应式设计 */
-@media (max-width: 1024px) {
-    .container {
-        padding: 35px;
-    }
-    
-    h1 {
-        font-size: 2.3em;
-    }
-}
-
-@media (max-width: 768px) {
-    body {
-        padding: 15px 10px;
-    }
-    
-    .container {
-        padding: 25px 20px;
-        border-radius: 15px;
-    }
-    
-    .container::before {
-        font-size: 250px;
-    }
-    
-    h1 {
-        font-size: 1.9em;
-        letter-spacing: 1px;
-    }
-    
-    .subtitle {
-        font-size: 1em;
-    }
-    
-    h2 {
-        font-size: 1.4em;
-        padding: 14px 18px;
-    }
-    
-    h3 {
-        font-size: 1.2em;
-    }
-    
-    .day-section {
-        padding: 20px;
-        margin-bottom: 25px;
-    }
-    
-    table {
-        font-size: 0.9em;
-    }
-    
-    th, td {
-        padding: 12px 10px;
-    }
-    
-    .print-button {
-        bottom: 20px;
-        right: 20px;
-        padding: 12px 20px;
-        font-size: 1em;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.6em;
-    }
-    
-    h2 {
-        font-size: 1.2em;
-    }
-    
-    th, td {
-        padding: 10px 8px;
-        font-size: 0.95em;
-    }
-}
-
-/* 打印样式 */
-@media print {
-    body {
-        background: white;
-        padding: 0;
-    }
-    
-    .container {
-        box-shadow: none;
-        padding: 20px;
-        max-width: 100%;
-    }
-    
-    .container::before {
-        display: none;
-    }
-    
-    .day-section {
-        page-break-inside: avoid;
-        box-shadow: none;
-        border: 1px solid #e2e8f0;
-    }
-    
-    .day-section:hover {
-        transform: none;
-    }
-    
-    .print-button {
-        display: none;
-    }
-    
-    h2 {
-        color: #2d3561;
-        background: #edf2f7 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-    }
-}
-
-/* 滚动条美化 */
-::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #5568d3 0%, #63408d 100%);
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiTAP 智能維護終端</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    ::-webkit-scrollbar { height: 6px; width: 6px; }
+    ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+  </style>
 </head>
-<body>
-<div class="container">
+<body class="bg-slate-950 p-3 md:p-6 min-h-screen text-slate-100 flex flex-col">
 
-<div class="header">
-<h1>🎌 東京 7天6夜精緻行程表</h1>
-<p class="subtitle">2025.12.26 - 2026.01.01 | 夢幻東京冬季之旅 ❄️</p>
-</div>
+  <div class="max-w-5xl mx-auto w-full bg-slate-900 rounded-2xl shadow-2xl border border-slate-800 p-4 md:p-6 flex-1 flex flex-col">
+    <div class="flex border-b border-slate-800 mb-6">
+      <button onclick="switchTab('input-tab')" id="btn-input-tab" class="flex-1 py-3 text-center text-sm font-bold border-b-2 border-blue-500 text-blue-400 focus:outline-none transition">
+        📝 數據輸入填報
+      </button>
+      <button onclick="switchTab('history-tab')" id="btn-history-tab" class="flex-1 py-3 text-center text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 focus:outline-none transition">
+        📊 歷史數據看板
+      </button>
+    </div>
 
-<div class="day-section">
-<h2>Day 1：12/26 (五) 成田 → 上野 → 晴空塔</h2>
-<h3>🗓 行程安排</h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>時間</th>
-<th>活動</th>
-<th>地點/備註</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>08:00</td>
-<td>✈️ 小港機場出發</td>
-<td>中華航空</td>
-</tr>
-<tr>
-<td>12:15</td>
-<td>抵達成田機場第二航廈</td>
-<td>入境、領行李、購買交通票券</td>
-</tr>
-<tr>
-<td>14:42</td>
-<td>搭乘 Skyliner</td>
-<td>成田 → 上野車站 (41分鐘)</td>
-</tr>
-<tr>
-<td>15:30</td>
-<td>🏨 飯店 Check-in</td>
-<td>入谷口飯店</td>
-</tr>
-<tr>
-<td>17:00-20:00</td>
-<td>🗼 晴空塔 & 墨田水族館</td>
-<td>夜景觀賞、水族館探索</td>
-</tr>
-<tr>
-<td>20:30</td>
-<td>🍽 晚餐</td>
-<td>上野阿美橫町美食街</td>
-</tr>
-<tr>
-<td>22:00</td>
-<td>🛒 超市採購</td>
-<td>回飯店休息</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+    <div id="input-tab" class="tab-content active max-w-md mx-auto w-full space-y-5">
+      <form id="pmForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-inner">
+          <h3 class="text-xs font-bold text-blue-400 tracking-wider mb-3">一、基本資訊</h3>
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs text-slate-400 mb-1">Tool 編號</label>
+              <select id="tool" name="tool" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none" required>
+                <option value="">正在連線後端 API...</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs text-slate-400 mb-1">PM 日期</label>
+              <input type="date" id="pmDate" name="pmDate" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none" required>
+            </div>
+          </div>
+        </div>
 
-<div class="day-section">
-<h2>Day 2：12/27 (六) 淺草和服 & 秋葉原</h2>
-<h3>🗓 行程安排</h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>時間</th>
-<th>活動</th>
-<th>地點/備註</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>09:00</td>
-<td>👘 集合出發</td>
-<td>淺草「月見」和服體驗</td>
-</tr>
-<tr>
-<td>09:30-12:30</td>
-<td>⛩ 雷門、淺草寺散策</td>
-<td>仲見世通拍照、祈福</td>
-</tr>
-<tr>
-<td>13:30</td>
-<td>🍽 午餐</td>
-<td>淺草牛光 (燒肉/壽喜燒)</td>
-</tr>
-<tr>
-<td>16:30</td>
-<td>👘 歸還和服</td>
-<td>月見店鋪</td>
-</tr>
-<tr>
-<td>17:00-22:00</td>
-<td>🎮 秋葉原逛街</td>
-<td>動漫、電器街、女僕咖啡廳</td>
-</tr>
-<tr>
-<td>22:30</td>
-<td>🍽 晚餐</td>
-<td>鴨TO蔥 (上野)</td>
-</tr>
-<tr>
-<td>23:30</td>
-<td>🏨 回入谷口飯店</td>
-<td>休息</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-inner">
+          <h3 class="text-xs font-bold text-blue-400 tracking-wider mb-3">二、Parts 更換</h3>
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <div><label class="block text-xs text-slate-400 mb-1">模組</label><input type="text" name="partsModule" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+            <div><label class="block text-xs text-slate-400 mb-1">STD</label><input type="text" name="partsStd" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+          </div>
+          <div class="mb-3"><label class="block text-xs text-slate-400 mb-1">MOA晶片</label><input type="text" name="partsMoaChip" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none" placeholder="❌"></div>
+          <div><label class="block text-xs text-slate-400 mb-1">其他</label><input type="text" name="partsOther" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+        </div>
 
-<div class="day-section">
-<h2>Day 3：12/28 (日) 越後湯澤滑雪</h2>
-<h3>🗓 行程安排</h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>時間</th>
-<th>活動</th>
-<th>地點/備註</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>05:30</td>
-<td>🏨 飯店退房</td>
-<td>入谷口飯店 (寄放大件行李)</td>
-</tr>
-<tr>
-<td>06:14</td>
-<td>🚄 搭新幹線</td>
-<td>上野 → 越後湯澤 (07:22抵達)</td>
-</tr>
-<tr>
-<td>08:30-09:30</td>
-<td>⛷️ 雪物嚴選租借滑雪裝備</td>
-<td>雪服、雪板、雪鞋 (可寄放一件行李)</td>
-</tr>
-<tr>
-<td>09:10</td>
-<td>🚌 接駁巴士</td>
-<td>越後湯澤 → 石打丸山滑雪場石口入口</td>
-</tr>
-<tr>
-<td>09:30-17:00</td>
-<td>⛷️ 滑雪活動</td>
-<td>石打丸山滑雪場 (含午餐)</td>
-</tr>
-<tr>
-<td>17:30</td>
-<td>🚌 座接駁車回去歸還裝備</td>
-<td>石打丸山滑雪場石口入口回租借店</td>
-</tr>
-<tr>
-<td>18:30</td>
-<td>🏡 民宿入住</td>
-<td>湯澤 Oriental 民宿</td>
-</tr>
-<tr>
-<td>19:30</td>
-<td>🍽 晚餐</td>
-<td>Ninjintel 炸豬排</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-inner">
+          <h3 class="text-xs font-bold text-blue-400 tracking-wider mb-3">三、Sensor & 壓力</h3>
+          <div class="mb-3"><label class="block text-xs text-slate-400 mb-1">Service Report</label><input type="text" name="serviceReport" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <div><label class="block text-xs text-slate-400 mb-1">Sensor Count</label><input type="text" name="sensorCount" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+            <div><label class="block text-xs text-slate-400 mb-1">Sensor HR</label><input type="text" name="sensorHr" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <div><label class="block text-xs text-slate-400 mb-1">STD (psi)</label><input type="number" name="stdPsi" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+            <div><label class="block text-xs text-slate-400 mb-1">Viewer (sec)</label><input type="number" name="viewerPress" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+            <div><label class="block text-xs text-slate-400 mb-1">N2調壓</label><input type="text" name="n2Press" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+          </div>
+        </div>
 
-<div class="day-section">
-<h2>Day 4：12/29 (一) 返東京 → 池袋購物</h2>
-<h3>🗓 行程安排</h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>時間</th>
-<th>活動</th>
-<th>地點/備註</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>09:30</td>
-<td>🏡 民宿退房</td>
-<td>湯澤 Oriental</td>
-</tr>
-<tr>
-<td>10:15</td>
-<td>🚄 搭新幹線</td>
-<td>越後湯澤 → 上野</td>
-</tr>
-<tr>
-<td>12:30</td>
-<td>🏠 民宿入住</td>
-<td>墨田民宿</td>
-</tr>
-<tr>
-<td>14:00-21:00</td>
-<td>🛍 池袋購物</td>
-<td>Sunshine City、最大扭蛋店、無敵家拉麵</td>
-</tr>
-<tr>
-<td>21:30</td>
-<td>🏠 回墨田民宿</td>
-<td>休息</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-inner">
+          <h3 class="text-xs font-bold text-blue-400 tracking-wider mb-3">四、Manifold 流道 & Pump</h3>
+          <div class="grid grid-cols-3 gap-2 mb-3">
+            <div><label class="block text-xs text-slate-400 mb-1">Flow 1</label><input type="text" name="manifoldFlow1" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+            <div><label class="block text-xs text-slate-400 mb-1">Flow 2</label><input type="text" name="manifoldFlow2" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+            <div><label class="block text-xs text-slate-400 mb-1">Flow 3</label><input type="text" name="manifoldFlow3" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+          </div>
+          <div><label class="block text-xs text-slate-400 mb-1">MOA Pump 狀態</label><input type="text" name="moaPump" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none" placeholder="ok"></div>
+        </div>
 
-<div class="day-section">
-<h2>Day 5：12/30 (二) 新宿 & 原宿</h2>
-<h3>🗓 行程安排</h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>時間</th>
-<th>活動</th>
-<th>地點/備註</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>09:00</td>
-<td>🚶 集合出發</td>
-<td>墨田民宿</td>
-</tr>
-<tr>
-<td>10:00-12:30</td>
-<td>🛍 新宿購物</td>
-<td>伊勢丹、Lumine、唐吉訶德</td>
-</tr>
-<tr>
-<td>13:00</td>
-<td>🍽 午餐</td>
-<td>肉屋台所 2號店 (燒肉)</td>
-</tr>
-<tr>
-<td>14:30-17:00</td>
-<td>🛍 原宿逛街</td>
-<td>竹下通、表參道</td>
-</tr>
-<tr>
-<td>17:00/17:30</td>
-<td>🍽 晚餐</td>
-<td>檸檬牛舌 (已預約 5人+4人)</td>
-</tr>
-<tr>
-<td>19:30</td>
-<td>🏠 回墨田民宿</td>
-<td>休息</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-inner">
+          <h3 class="text-xs font-bold text-blue-400 tracking-wider mb-3">五、MITAP 環境數據</h3>
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <div><label class="block text-xs text-slate-400 mb-1">RH (%)</label><input type="text" name="mitapRh" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+            <div><label class="block text-xs text-slate-400 mb-1">Temp (°C)</label><input type="text" name="mitapTemp" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <div><label class="block text-xs text-slate-400 mb-1">GC1</label><input type="text" name="mitapGc1" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+            <div><label class="block text-xs text-slate-400 mb-1">GC3</label><input type="text" name="mitapGc3" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+            <div><label class="block text-xs text-slate-400 mb-1">3WAY</label><input type="text" name="mitap3way" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none"></div>
+          </div>
+        </div>
 
-<div class="day-section">
-<h2>Day 6：12/31 (三) 中目黑 → 澀谷 → 銀座 → 跨年</h2>
-<h3>🗓 行程安排</h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>時間</th>
-<th>活動</th>
-<th>地點/備註</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10:00</td>
-<td>☕ 中目黑散策</td>
-<td>目黑川、特色咖啡店</td>
-</tr>
-<tr>
-<td>11:30</td>
-<td>📚 代官山特色小店</td>
-<td>蔦屋書店 (日本最美書店)</td>
-</tr>
-<tr>
-<td>13:00</td>
-<td>🍽 午餐 + 下午茶</td>
-<td>澀谷</td>
-</tr>
-<tr>
-<td>15:00-17:30</td>
-<td>🛍 表參道 & 銀座</td>
-<td>精品街購物、建築巡禮</td>
-</tr>
-<tr>
-<td>18:30</td>
-<td>🍽 晚餐</td>
-<td>壽喜燒 (已預約 15人)</td>
-</tr>
-<tr>
-<td>21:00</td>
-<td>🎆 跨年倒數活動</td>
-<td>澀谷十字路口/表參道</td>
-</tr>
-<tr>
-<td>01:00</td>
-<td>🏠 回墨田民宿</td>
-<td>地鐵通宵或計程車</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-inner">
+          <h3 class="text-xs font-bold text-blue-400 tracking-wider mb-3">六、異常與備註說明</h3>
+          <textarea name="note" rows="2" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-slate-100 focus:border-blue-500 focus:outline-none" placeholder="填寫異常狀況..."></textarea>
+        </div>
 
-<div class="day-section">
-<h2>Day 7：01/01 (四) 東京車站 → 成田 → 高雄</h2>
-<h3>🗓 行程安排</h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>時間</th>
-<th>活動</th>
-<th>地點/備註</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10:00</td>
-<td>🏠 民宿退房</td>
-<td>墨田民宿</td>
-</tr>
-<tr>
-<td>10:30-13:30</td>
-<td>🛍 伴手禮購物</td>
-<td>東京車站一番街、GRANSTA</td>
-</tr>
-<tr>
-<td>14:00</td>
-<td>🚌 包車</td>
-<td>墨田 → 成田第二航廈</td>
-</tr>
-<tr>
-<td>16:00</td>
-<td>✈️ 辦理登機</td>
-<td>成田機場第二航廈</td>
-</tr>
-<tr>
-<td>18:25</td>
-<td>✈️ 起飛</td>
-<td>成田 → 小港 (中華航空)</td>
-</tr>
-<tr>
-<td>21:55</td>
-<td>🏠 抵達高雄</td>
-<td>小港機場 - 平安返家</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+        <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-lg cursor-pointer active:scale-[0.99]">
+          同步數據至雲端資料庫
+        </button>
+      </form>
+      <div id="resultMessage" class="p-3 text-sm rounded-xl hidden text-center font-medium border"></div>
+    </div>
 
-<div class="day-section accommodation-section">
-<h2>🏨 住宿資訊總覽</h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>日期</th>
-<th>住宿名稱</th>
-<th>地點</th>
-<th>備註</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>12/26-27</td>
-<td>入谷口飯店</td>
-<td>東京上野</td>
-<td>近上野站、交通便利</td>
-</tr>
-<tr>
-<td>12/28</td>
-<td>湯澤 Oriental 民宿</td>
-<td>越後湯澤</td>
-<td>近滑雪場、溫泉設施</td>
-</tr>
-<tr>
-<td>12/29-31</td>
-<td>墨田民宿</td>
-<td>東京淺草</td>
-<td>近淺草站、晴空塔徒步可達</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+    <div id="history-tab" class="tab-content flex-1 flex flex-col">
+      <div class="flex items-center justify-between mb-4">
+        <p class="text-xs text-slate-400">滑動可橫向檢視完整欄位數據</p>
+        <button onclick="loadHistoryData()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-700 text-blue-400 font-medium cursor-pointer">
+          🔄 重新整理
+        </button>
+      </div>
 
-<div class="day-section restaurant-section">
-<h2>🍽️ 已預約餐廳列表</h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr>
-<th>日期</th>
-<th>時間</th>
-<th>餐廳名稱</th>
-<th>人數</th>
-<th>備註</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>12/27</td>
-<td>13:30</td>
-<td>淺草牛光</td>
-<td>9人</td>
-<td>牛肉丼飯專門店</td>
-</tr>
-<tr>
-<td>12/30</td>
-<td>17:00</td>
-<td>檸檬牛舌</td>
-<td>5人</td>
-<td>第一批 (新宿店)</td>
-</tr>
-<tr>
-<td>12/30</td>
-<td>17:30</td>
-<td>檸檬牛舌</td>
-<td>4人</td>
-<td>第二批 (新宿店)</td>
-</tr>
-<tr>
-<td>12/31</td>
-<td>18:30</td>
-<td>壽喜燒</td>
-<td>15人</td>
-<td>跨年特別晚餐</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+      <div class="overflow-x-auto border border-slate-800 rounded-xl shadow-inner bg-slate-950 flex-1 min-h-[300px]">
+        <table class="w-full text-left border-collapse text-xs whitespace-nowrap">
+          <thead class="bg-slate-800 sticky top-0 border-b border-slate-700 text-slate-300 font-bold">
+            <tr>
+              <th class="p-3 border-r border-slate-700">Site</th>
+              <th class="p-3 border-r border-slate-700">Tool</th>
+              <th class="p-3 border-r border-slate-700">PM日期</th>
+              <th class="p-3">更換模組</th>
+              <th class="p-3">更換STD</th>
+              <th class="p-3">MOA晶片</th>
+              <th class="p-3">其他更換</th>
+              <th class="p-3">Service Rep.</th>
+              <th class="p-3">Sensor Count</th>
+              <th class="p-3">Sensor HR</th>
+              <th class="p-3">STD (psi)</th>
+              <th class="p-3">Viewer (sec)</th>
+              <th class="p-3">N2調壓</th>
+              <th class="p-3">Flow 1</th>
+              <th class="p-3">Flow 2</th>
+              <th class="p-3">Flow 3</th>
+              <th class="p-3">MOA Pump</th>
+              <th class="p-3">RH (%)</th>
+              <th class="p-3">Temp (°C)</th>
+              <th class="p-3">GC1</th>
+              <th class="p-3">GC3</th>
+              <th class="p-3">3WAY</th>
+              <th class="p-3">備註</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody" class="divide-y divide-slate-850/60 text-slate-300">
+            <tr>
+              <td colspan="23" class="p-8 text-center text-slate-500">正在讀取歷史紀錄...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-<div class="important-notes">
-<h2>⚠️ 重要提醒事項</h2>
-<ul>
-<li><strong>Day 3 早起</strong>：05:30 出發很早，前晚務必早睡！</li>
-<li><strong>Day 6 跨年</strong>：地鐵可能通宵，注意末班車時間或預約計程車</li>
-<li><strong>現金準備</strong>：建議每人準備 ¥50,000-80,000 現金</li>
-<li><strong>必備 APP</strong>：Google Maps、乘換案內、Suica 電子錢包</li>
-<li><strong>保暖衣物</strong>：12月底東京氣溫約 5-10°C，請攜帶厚外套</li>
-<li><strong>滑雪裝備</strong>：可在雪物嚴選寄放一件行李</li>
-<li><strong>餐廳預約</strong>：請準時抵達，遲到可能取消預約</li>
-<li><strong>伴手禮</strong>：Day 7 東京車站是最後採購機會</li>
-</ul>
-</div>
+  </div>
 
-</div>
+  <script>
+    // 已自動替換為你提供的新部署網址
+    const GAS_API_URL = "https://script.google.com/macros/s/AKfycbw9Wslm3mW1vNmyKn8mpGcUzxpP1_3S1hg2c-REE1Vn6_I30F1iglO-sO7n1UE2HTGm/exec";
 
-<button class="print-button" onclick="window.print()">列印行程表</button>
-
-<script>
-// 平滑滚动效果
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// 添加滚动动画
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.day-section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'all 0.6s ease-out';
-    observer.observe(section);
-});
-</script>
-<script>
-// 列印前優化
-window.addEventListener('beforeprint', function() {
-    // 隱藏不需要的元素
-    document.querySelectorAll('.print-button').forEach(el => {
-        el.style.display = 'none';
-    });
-    
-    // 縮小容器
-    const container = document.querySelector('.container');
-    if (container) {
-        container.style.padding = '10px';
-        container.style.boxShadow = 'none';
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      
+      document.getElementById('btn-input-tab').className = tabId === 'input-tab' ? 'flex-1 py-3 text-center text-sm font-bold border-b-2 border-blue-500 text-blue-400 focus:outline-none' : 'flex-1 py-3 text-center text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 focus:outline-none';
+      document.getElementById('btn-history-tab').className = tabId === 'history-tab' ? 'flex-1 py-3 text-center text-sm font-bold border-b-2 border-blue-500 text-blue-400 focus:outline-none' : 'flex-1 py-3 text-center text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 focus:outline-none';
+      
+      if (tabId === 'history-tab') {
+        loadHistoryData();
+      }
     }
-    
-    // 縮小所有區塊
-    document.querySelectorAll('.day-section').forEach(section => {
-        section.style.padding = '10px';
-        section.style.marginBottom = '10px';
-    });
-    
-    // 縮小表格字體
-    document.querySelectorAll('table').forEach(table => {
-        table.style.fontSize = '0.75em';
-    });
-});
 
-// 列印後還原
-window.addEventListener('afterprint', function() {
-    location.reload(); // 重新載入頁面還原樣式
-});
-</script>
+    window.addEventListener('load', function() {
+      document.getElementById('pmDate').value = new Date().toISOString().split('T')[0];
+      
+      fetch(GAS_API_URL)
+        .then(res => {
+          if (!res.ok) throw new Error('HTTP status ' + res.status);
+          return res.json();
+        })
+        .then(tools => {
+          const select = document.getElementById('tool');
+          select.innerHTML = '<option value="">請選擇 Tool 編號</option>';
+          tools.forEach(tool => {
+            select.innerHTML += `<option value="${tool}">${tool}</option>`;
+          });
+        })
+        .catch(err => {
+          document.getElementById('tool').innerHTML = `<option value="">連線錯誤原因: ${err.message}</option>`;
+        });
+    });
+
+    function loadHistoryData() {
+      const tbody = document.getElementById('historyTableBody');
+      tbody.innerHTML = '<tr><td colspan="23" class="p-8 text-center text-slate-400 animate-pulse">正在從試算表資料庫同步數據...</td></tr>';
+      
+      fetch(`${GAS_API_URL}?action=getRecords`)
+        .then(res => {
+          if (!res.ok) throw new Error('HTTP status ' + res.status);
+          return res.json();
+        })
+        .then(records => {
+          if (records.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="23" class="p-8 text-center text-slate-500">工作表內尚無數據</td></tr>';
+            return;
+          }
+          tbody.innerHTML = '';
+          records.forEach(r => {
+            const rowClass = r.pmDate ? 'hover:bg-slate-800/50 bg-slate-900/40' : 'hover:bg-slate-800/30 text-slate-500';
+            tbody.innerHTML += `
+              <tr class="${rowClass}">
+                <td class="p-3 border-r border-slate-700 font-bold text-slate-400">${r.site}</td>
+                <td class="p-3 border-r border-slate-700 font-bold text-blue-400">${r.tool}</td>
+                <td class="p-3 border-r border-slate-700 text-emerald-400">${r.pmDate || '-'}</td>
+                <td class="p-3">${r.partsModule || '-'}</td>
+                <td class="p-3">${r.partsStd || '-'}</td>
+                <td class="p-3 text-center">${r.partsMoaChip || '-'}</td>
+                <td class="p-3">${r.partsOther || '-'}</td>
+                <td class="p-3">${r.serviceReport || '-'}</td>
+                <td class="p-3">${r.sensorCount || '-'}</td>
+                <td class="p-3">${r.sensorHr || '-'}</td>
+                <td class="p-3">${r.stdPsi || '-'}</td>
+                <td class="p-3">${r.viewerPress || '-'}</td>
+                <td class="p-3">${r.n2Press || '-'}</td>
+                <td class="p-3">${r.manifoldFlow1 || '-'}</td>
+                <td class="p-3">${r.manifoldFlow2 || '-'}</td>
+                <td class="p-3">${r.manifoldFlow3 || '-'}</td>
+                <td class="p-3">${r.moaPump || '-'}</td>
+                <td class="p-3">${r.mitapRh || '-'}</td>
+                <td class="p-3">${r.mitapTemp || '-'}</td>
+                <td class="p-3">${r.mitapGc1 || '-'}</td>
+                <td class="p-3">${r.mitapGc3 || '-'}</td>
+                <td class="p-3">${r.mitap3way || '-'}</td>
+                <td class="p-3 max-w-xs truncate text-amber-400" title="${r.note}">${r.note || '-'}</td>
+              </tr>
+            `;
+          });
+        })
+        .catch(err => {
+          tbody.innerHTML = `<tr><td colspan="23" class="p-8 text-center text-rose-400">讀取失敗: ${err.message}</td></tr>`;
+        });
+    }
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const form = document.getElementById('pmForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const resultDiv = document.getElementById('resultMessage');
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = '數據傳輸中...';
+
+      const formData = {
+        tool: form.tool.value, pmDate: form.pmDate.value, partsModule: form.partsModule.value,
+        partsStd: form.partsStd.value, partsMoaChip: form.partsMoaChip.value, partsOther: form.partsOther.value,
+        serviceReport: form.serviceReport.value, sensorCount: form.sensorCount.value, sensorHr: form.sensorHr.value,
+        stdPsi: form.stdPsi.value, viewerPress: form.viewerPress.value, n2Press: form.n2Press.value,
+        manifoldFlow1: form.manifoldFlow1.value, manifoldFlow2: form.manifoldFlow2.value, manifoldFlow3: form.manifoldFlow3.value,
+        moaPump: form.moaPump.value, mitapRh: form.mitapRh.value, mitapTemp: form.mitapTemp.value,
+        mitapGc1: form.mitapGc1.value, mitapGc3: form.mitapGc3.value, mitap3way: form.mitap3way.value, note: form.note.value
+      };
+
+      fetch(GAS_API_URL, {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(res => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '同步數據至雲端資料庫';
+        resultDiv.classList.remove('hidden');
+        
+        if (res.status === 'success') {
+          resultDiv.className = 'mt-4 p-3 text-sm rounded-xl text-center bg-emerald-950 text-emerald-300 border-emerald-800/60';
+          resultDiv.textContent = res.message;
+          form.reset();
+          document.getElementById('pmDate').value = new Date().toISOString().split('T')[0];
+        } else {
+          resultDiv.className = 'mt-4 p-3 text-sm rounded-xl text-center bg-rose-950 text-rose-300 border-rose-800/60';
+          resultDiv.textContent = res.message;
+        }
+      })
+      .catch(err => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '同步數據至雲端資料庫';
+        resultDiv.classList.remove('hidden');
+        resultDiv.className = 'mt-4 p-3 text-sm rounded-xl text-center bg-rose-950 text-rose-300 border-rose-800/60';
+        resultDiv.textContent = '傳輸失敗: ' + err.message;
+      });
+    }
+  </script>
 </body>
 </html>
-
